@@ -1,0 +1,14 @@
+@UltracarAPI_HostAddress = https://localhost:7193
+
+GET {{UltracarAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+GET {{UltracarAPI_HostAddress}}/api/budgets/1
+
+###
+
+GET {{UltracarAPI_HostAddress}}/api/budgets?id=0
+
+###

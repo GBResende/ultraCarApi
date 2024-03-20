@@ -7,7 +7,8 @@ Este repositório contém o código-fonte de um sistema básico desenvolvido par
 - **Entity Framework:** Utilizado como ORM (Object-Relational Mapping) para facilitar a interação com o banco de dados PostgreSQL.
 - **PostgreSQL:** Banco de dados utilizado para armazenar informações sobre orçamentos, peças e movimentação de estoque.
 - **Metodologia Code-First:** Utilizada para definir o modelo de banco de dados por meio do código, facilitando a manutenção e a evolução do sistema.
-- **Injeção de Dependência:** Prática adotada para aumentar a modularidade e a testabilidade do código.
+- **Injeção de Dependência:** Prática adotada para aumentar a modularidade.
+- **Princípios Solid:** Utilizado para facilitar a manutenabilidade do código além de expandir meus conhecimentos a respeito.
 - **ASP.NET Core 8.0:** Utilizado para desenvolver a API backend do sistema.
 
 ## Desafios e Aprendizados:

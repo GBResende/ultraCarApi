@@ -1,4 +1,5 @@
 ﻿using UltracarAPI.Models;
+using UltracarAPI.Utils.Dtos;
 
 namespace UltracarAPI.Services.Interfaces
 {
@@ -6,8 +7,8 @@ namespace UltracarAPI.Services.Interfaces
     {
         Task<IQueryable<Part>> GetAllPartsAsync();
         Task<Part> GetPartByIdAsync(int id);
-        void AddPartAsync(Part part);
-        void UpdatePartAsync(Part part);
+        Task<bool> AddPartAsync(Part part);
+        Task UpdatePartAsync(Part part);
         void DeletePartAsync(int id);
     }
 }

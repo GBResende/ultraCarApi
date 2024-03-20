@@ -4,10 +4,10 @@ namespace UltracarAPI.Services.Interfaces
 {
     public interface IStockMovementService
     {
-        IQueryable<StockMovement> GetAllStockMovements();
-        StockMovement GetStockMovementById(int id);
-        void AddStockMovement(StockMovement stockMovement);
-        void UpdateStockMovement(StockMovement stockMovement);
-        void DeleteStockMovement(int id);
+        Task<IQueryable<StockMovement>> GetAllStockMovementsAsync();
+        Task<StockMovement> GetStockMovementByIdAsync(int id);
+        Task<bool> AddStockMovementAsync(StockMovement stockMovement);
+        Task UpdateStockMovementAsync(StockMovement stockMovement);
+        void DeleteStockMovementAsync(int id);
     }
 }

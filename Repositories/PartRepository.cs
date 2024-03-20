@@ -1,6 +1,7 @@
 ﻿using UltracarAPI.Data;
 using UltracarAPI.Models;
 using UltracarAPI.Repositories.Interfaces;
+using UltracarAPI.Utils.Dtos;
 
 namespace UltracarAPI.Repositories
 {
@@ -38,15 +39,16 @@ namespace UltracarAPI.Repositories
             return true;
         }
 
-        public void UpdateAsync(Part part)
+        public async Task UpdateAsync(Part part)
         {
-            if (part == null)
-            {
-                throw new ArgumentNullException(nameof(part));
-            }
+            var partForUpdate = await _context.Parts.FindAsync(part.Id);
 
-            _context.Parts.Update(part);
-            _context.SaveChanges();
+            if (partForUpdate != null)
+            {
+                partForUpdate.Name = part.Name;
+                partForUpdate.Quantity = part.Quantity;
+                await _context.SaveChangesAsync();
+            }
         }
 
         public void DeleteAsync(Part part)

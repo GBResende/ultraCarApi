@@ -4,6 +4,6 @@
     {
         entry = 0,
         exit = 1,
-        await = 2
+        awaiting = 2
     }
 }

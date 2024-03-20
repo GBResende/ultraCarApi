@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Runtime.CompilerServices;
 using UltracarAPI.Data;
 using UltracarAPI.Models;
 using UltracarAPI.Repositories.Interfaces;
@@ -13,7 +14,6 @@ namespace UltracarAPI.Repositories
         {
             _context = context;
         }
-
 
         public async Task<IQueryable<Budget>> GetAllAsync()
         {
@@ -38,7 +38,7 @@ namespace UltracarAPI.Repositories
             return true;
         }
 
-        public void UpdateAsync(Budget budget)
+        public async Task UpdateAsync(Budget budget)
         {
             if (budget == null)
             {

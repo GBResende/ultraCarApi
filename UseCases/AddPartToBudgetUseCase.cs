@@ -1,32 +1,35 @@
-﻿//using UltracarAPI.Services.Interfaces;
+﻿using UltracarAPI.Models;
+using UltracarAPI.Services.Interfaces;
+using UltracarAPI.UseCases.Interfaces;
+using UltracarAPI.Utils.Enums;
+using UltracarAPI.Utils.Mapper;
 
-//namespace UltracarAPI.UseCases
-//{
-//    public class AddPartToBudgetUseCase
-//    {
-//        private readonly IPartService _partService;
-//        private readonly IBudgetService _budgetService;
+namespace UltracarAPI.UseCases
+{
+    public class AddPartToBudgetUseCase : IAddPartToBudgetUseCase
+    {
+        private readonly IStockMovementService _stockMovementService;
 
-//        public AddPartToBudgetUseCase(IPartService partService, IBudgetService budgetService)
-//        {
-//            _partService = partService;
-//            _budgetService = budgetService;
-//        }
+        public AddPartToBudgetUseCase(IStockMovementService stockMovementService)
+        {
+            _stockMovementService = stockMovementService;
 
-//        public async Task<bool> ExecuteAsync(int budgetId, int partId)
-//        {
-//            var budget = await _budgetService.GetBudgetByIdAsync(budgetId);
-//            var part = await _partService.GetPartByIdAsync(partId);
+        }
 
-//            if (budget == null || part == null)
-//            {
-//                return false; // Or throw an exception
-//            }
+        public async Task<bool> ExecuteAsync(StockMovement stockMovement)
+        {
+            try
+            {
+                var budgets = await _stockMovementService.AddStockMovementAsync(stockMovement);
 
-//            budget.Parts.Add(part);
-//            await _budgetService.UpdateBudgetAsync(budget);
+                return true;
 
-//            return true;
-//        }
-//    }
-//}
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+
+            }
+        }
+    }
+}

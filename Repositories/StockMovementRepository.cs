@@ -1,59 +1,76 @@
-﻿//using UltracarAPI.Data;
-//using UltracarAPI.Models;
-//using UltracarAPI.Repositories.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using UltracarAPI.Data;
+using UltracarAPI.Models;
+using UltracarAPI.Repositories.Interfaces;
 
-//namespace UltracarAPI.Repositories
-//{
-//    public class StockMovementRepository : IStockMovementRepository
-//    {
-//        private readonly AppDbContext _context;
+namespace UltracarAPI.Repositories
+{
+    public class StockMovementRepository : IStockMovementRepository
+    {
+        private readonly AppDbContext _context;
 
-//        public StockMovementRepository(AppDbContext context)
-//        {
-//            _context = context;
-//        }
+        public StockMovementRepository(AppDbContext context)
+        {
+            _context = context;
+        }
 
-//        public IQueryable<StockMovement> GetAll()
-//        {
-//            return _context.StockMovements;
-//        }
+        public async Task<IQueryable<StockMovement>> GetAllAsync()
+        {
+            return _context.StockMovements;
+        }
 
-//        public StockMovement GetById(int id)
-//        {
-//            return _context.StockMovements.FirstOrDefault(m => m.Id == id);
-//        }
+        public async Task<StockMovement> GetByIdAsync(int id)
+        {
+            var stockMovementWithDetails = _context.StockMovements
+                .Where(sm => sm.Id == id)
+                .Include(sm => sm.Part) 
+                .Include(sm => sm.Budget)
+                .FirstOrDefault();
 
-//        public void Add(StockMovement stockMovement)
-//        {
-//            if (stockMovement == null)
-//            {
-//                throw new ArgumentNullException(nameof(stockMovement));
-//            }
+            if (stockMovementWithDetails == null)
+            {
+                throw new ArgumentNullException();
+            }
 
-//            _context.StockMovements.Add(stockMovement);
-//            _context.SaveChanges();
-//        }
+            return stockMovementWithDetails;
+        }
 
-//        public void Update(StockMovement stockMovement)
-//        {
-//            if (stockMovement == null)
-//            {
-//                throw new ArgumentNullException(nameof(stockMovement));
-//            }
+        public async Task<bool> AddAsync(StockMovement stockMovement)
+        {
+            if (stockMovement == null)
+            {
+                throw new ArgumentNullException(nameof(stockMovement));
+            }
 
-//            _context.StockMovements.Update(stockMovement);
-//            _context.SaveChanges();
-//        }
+            _context.StockMovements.Add(stockMovement);
+            _context.SaveChanges();
 
-//        public void Delete(StockMovement stockMovement)
-//        {
-//            if (stockMovement == null)
-//            {
-//                throw new ArgumentNullException(nameof(stockMovement));
-//            }
+            return true;
+        }
 
-//            _context.StockMovements.Remove(stockMovement);
-//            _context.SaveChanges();
-//        }
-//    }
-//}
+        public async Task UpdateAsync(StockMovement stockMovement)
+        {
+
+            var stockMovementToUpdate = await _context.StockMovements.FindAsync(stockMovement.Id);
+
+            if (stockMovementToUpdate != null)
+            {
+                stockMovementToUpdate.MovementType = stockMovement.MovementType;
+
+                await _context.SaveChangesAsync();
+            }
+
+        }
+
+        public void DeleteAsync(StockMovement stockMovement)
+        {
+            if (stockMovement == null)
+            {
+                throw new ArgumentNullException(nameof(stockMovement));
+            }
+
+            _context.StockMovements.Remove(stockMovement);
+            _context.SaveChanges();
+        }
+    }
+}

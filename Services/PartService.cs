@@ -1,6 +1,7 @@
 ﻿using UltracarAPI.Models;
 using UltracarAPI.Repositories.Interfaces;
 using UltracarAPI.Services.Interfaces;
+using UltracarAPI.Utils.Dtos;
 
 namespace UltracarAPI.Services
 {
@@ -23,24 +24,24 @@ namespace UltracarAPI.Services
             return _partRepository.GetByIdAsync(id);
         }
 
-        public void AddPartAsync(Part part)
+        public async Task<bool> AddPartAsync(Part part)
         {
             if (part == null)
             {
                 throw new ArgumentNullException(nameof(part));
             }
 
-            _partRepository.AddAsync(part);
+            return await _partRepository.AddAsync(part);
         }
 
-        public void UpdatePartAsync(Part part)
+        public async Task UpdatePartAsync(Part part)
         {
             if (part == null)
             {
                 throw new ArgumentNullException(nameof(part));
             }
 
-            _partRepository.UpdateAsync(part);
+            await _partRepository.UpdateAsync(part);
         }
 
         public async void DeletePartAsync(int id)

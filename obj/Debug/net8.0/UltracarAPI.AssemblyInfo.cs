@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UltracarAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5dbe1fd982a04166ec621c47e20a740d5c6eeb7f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+78bcaef464a900b86479ce05a02ffbe48107a0f9")]
 [assembly: System.Reflection.AssemblyProductAttribute("UltracarAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UltracarAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

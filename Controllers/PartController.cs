@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using UltracarAPI.Models;
+using UltracarAPI.Services;
 using UltracarAPI.Services.Interfaces;
 
 namespace UltracarAPI.Controllers
@@ -23,11 +25,18 @@ namespace UltracarAPI.Controllers
             return Ok(Part);
         }
 
-        //[HttpGet]
-        //public async Task<ActionResult<Budget>> GetAllBudgets(int id)
-        //{
-        //    var budgets = await _budgetService.GetAllBudgetsAsync();
-        //    return Ok(budgets);
-        //}
+        [HttpPost]
+        public async Task<ActionResult<Part>> postPart([Required] string name, [Required] int quantity)
+        {
+            var part = new Part
+            {
+                Name = name,
+                Quantity = quantity,
+                StockMovements = new List<StockMovement>()
+            };
+
+            var budgets = await _partService.AddPartAsync(part);
+            return Ok(budgets);
+        }
     }
 }

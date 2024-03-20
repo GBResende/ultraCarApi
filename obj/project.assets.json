@@ -2813,11 +2813,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Documents\\projetos\\UltracarAPI\\UltracarAPI.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Documents\\projetos\\Git\\ultraCarApi\\UltracarAPI.csproj",
       "projectName": "UltracarAPI",
-      "projectPath": "C:\\Users\\User\\Documents\\projetos\\UltracarAPI\\UltracarAPI.csproj",
+      "projectPath": "C:\\Users\\User\\Documents\\projetos\\Git\\ultraCarApi\\UltracarAPI.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Documents\\projetos\\UltracarAPI\\obj\\",
+      "outputPath": "C:\\Users\\User\\Documents\\projetos\\Git\\ultraCarApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
